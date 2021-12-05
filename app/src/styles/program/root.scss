@@ -1,0 +1,28 @@
+$blackColor: #000000;
+$whiteColor: #FFFFFF;
+$fonts: ('Playfairdisplay', 'Italic', 400),
+        ('PlayfairDisplay', 'Regular', 400),
+        ('TimesNewRoman', 'Regular', 400);
+
+@each $name, $type, $weight in $fonts {
+    @font-face {
+        font-family: $name;
+        src: url('../fonts/#{name}-#{type}.tff');
+        font-weight: $weight;
+    }
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+.container {
+    max-width: 1820px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 15px;
+}
