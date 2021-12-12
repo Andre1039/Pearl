@@ -5,6 +5,10 @@
         width: 25%;
         height: 750px;
         position: relative;
+
+        &:hover .main__card-function{
+            display: flex;
+        }
     }
 }
 
@@ -12,6 +16,8 @@
     &-img{
         width: 100%;
         height: 100%;
+        
+        
     }
 
     &-function{
