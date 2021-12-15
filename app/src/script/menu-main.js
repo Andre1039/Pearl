@@ -1,12 +1,12 @@
 const slider = document.querySelector('.main__card-slider '),
     slide = document.querySelectorAll('.main__card-slide'),
-    btn = document.querySelector('.main__card-btn'),
-    right = document.querySelector('.main__card-right');
+    btn = document.querySelectorAll('.main__card-btn'),
+    left = document.querySelector('.main__card-left');
 
 let direction = 'X',
-    width = right.clientWidth;
-    height = right.clientHeight;
-    moveSize = direction == 'X' ? width : height;
+    width = left.clientWidth,
+    height = left.clientHeight,
+    moveSize = direction == 'X' ? width : height,
     activeSlide = 0;
 
     slider.style = `
@@ -22,72 +22,36 @@ for(let i = 0; i < slide.length; i++) {
         height: ${this.height}px;
     `
 
-    if(i != this.activeSlide) {
+    if(i != activeSlide) {
         slide[i].style.transform = `translate${direction}(${moveSize}px)`;
     }
 
-    if(i === slide.length - 1) {
-        slide[i].style.transform = `translate${direction}(${-moveSize}px)`;
+    if(i == slide.length - 1){
+        slide[i].style.transform =`translate${direction}(${-moveSize}px)`;
     }
 }
 
+
+
 for(let i = 0; i < btn.length; i++){
-    btn[i].addEventListener('click', () => move())
+    btn[i].addEventListener('click', () => {
+        let atr = btn[i].getAttribute('data-atr');
+
+        for(let i = 0; i < btn.length; i++){
+            if(i < atr){
+                slide[i].style.transform = `translate${direction}(${-moveSize}px)`;
+            }else if(i > atr){
+                slide[i].style.transform = `translate${direction}(${moveSize}px)`;
+            }
+        }
+
+        slide[atr].style.transform = `translate${direction}(0px)`;
+        slide[atr].style.transition = '1000ms';
+
+        for(let i = 0; i  < btn.length; i++){
+            btn[i].classList.remove('active')
+        }
+        btn[i].classList.add('active');
+
+    })
 }
-
-// function move () {
-//     for(let i = 0; i < slide.length; i++) {
-//         slide[i].style.transition = '0ms';
-//         if(i != activeSlide) {
-//         this.slide[i].style.transform = `translate${direction}(${rightOrLeft * -1}px)`;
-//         }
-//     }
-
-//     slide[activeSlide].style.transform = `translate${direction}(${rightOrLeft}px)`;
-//     slide[activeSlide].style.transition = '1000ms';
-
-//     for(let i = 0; i  < btn.length; i++){
-//         btn[i].classList.remove('active')
-//     }
-//     btn[i].classList.add('active');
-
-// }
-
-// function move (btn) {
-//     let rightOrLeft = btn == next ? moveSize * -1 : moveSize;
-
-//     for(let i = 0; i < slide.length; i++) {
-//         slide[i].style.transition = '0ms';
-//         if(i != activeSlide) {
-//             this.slide[i].style.transform = `translate${direction}(${rightOrLeft * -1}px)`;
-//         }
-//     }
-//     console.log(slide);
-
-//     slide[activeSlide].style.transform = `translate${direction}(${rightOrLeft}px)`;
-//     slide[activeSlide].style.transition = '1000ms';
-
-//     if(btn == next) {
-//         activeSlide++;
-//         if(activeSlide >= slide.length){
-//             activeSlide = 0;
-//         }
-//     }else if(btn == prev) {
-//         activeSlide--;
-//         if(activeSlide < 0) {
-//             activeSlide = slide.length -1;
-//         }
-//     }
-// }
-
-console.log(btn);
-
-// btn.forEach(element => {
-//     element.addEventListener('click', () => {
-//         for(let i = 0; i < btn.length; i++) {
-//             btn[i].classList.remove('active');
-//         }
-
-//         element.classList.add('active');
-//     })
-// });
