@@ -1,4 +1,5 @@
-const slider = document.querySelector('.main__card-slider '),
+try{
+    const slider = document.querySelectorAll('.main__card-slider'),
     slide = document.querySelectorAll('.main__card-slide'),
     btn = document.querySelectorAll('.main__card-btn'),
     left = document.querySelector('.main__card-left');
@@ -54,4 +55,15 @@ for(let i = 0; i < btn.length; i++){
         btn[i].classList.add('active');
 
     })
+
+    slider.forEach(element => {
+        element.style = `
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+    `
+    })
+}
+}catch(error){
+    console.log(error);
 }

@@ -73,11 +73,22 @@
         }
 
         &-meals{
-            margin-bottom: 30px;
+            text-align: end;
+            margin: 0px 0px 30px 50px;
         }
 
         &-scroll{
-            overflow: hidden;
+            overflow-y: scroll;
+            height: 500px;
+            direction: rtl;
+
+            &::-webkit-scrollbar{
+                background: linear-gradient(90deg, rgba(255, 255, 255) 40%, #C4C4C4 50%, rgba(255, 255, 255) 40%);
+            }
+            &::-webkit-scrollbar-thumb{
+                background: #C4C4C4;
+                width: 10px;
+            }
         }
     }
 }
